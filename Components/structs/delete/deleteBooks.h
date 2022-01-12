@@ -4,45 +4,55 @@
 
 kitaplar *kitapSilme(kitaplar *ilk) { 
 	char istenilenKitap[40];
-	printf("Kutuphaneden silmek istediginiz kitabin adi:");
+	printf("Silmek istediginiz kitabin adi:");
 	scanf(" %[^\t\n]s",&istenilenKitap);
 	int m=0;
 	kitaplar *x=ilk;
-	while(x != NULL){
-		if (strcmp(x->kitapAdi,istenilenKitap) == 0)
+	while(x != NULL)
+	{
+		if (strcmp(x->kitapAdi,istenilenKitap) == 0)										//girilen iki stringin karsilastirilmasi
 		{
-			m=1;
+			m=1;																			//silinecek kitabin kutuphanede olup olmadigini kontrol eden islem
 		}
 		x=x->sonraki;
 	}
-	if(ilk == NULL) {
-		printf("Kitaplikta hicccc kitap yok\n");
+	if(ilk == NULL)
+	{
+		printf("Kitaplikta hicccc kitap yok");
 		return ilk;
-	}else if(m==1){
+	}
+	else if(m==1)
+	{
   	    kitaplar *temp = ilk;
 		kitaplar *q = NULL;
-	    while(temp != NULL) {
-	            if(strcmp(ilk->kitapAdi,istenilenKitap) == 0){
+	    while(temp != NULL)
+		{
+	            if(strcmp(ilk->kitapAdi,istenilenKitap) == 0)
+				{
 					kitaplar *p = ilk->sonraki;
-					free(ilk);
-					ilk=p;
-					temp=ilk;
-					while (temp != NULL)
+					if (ilk->kitapAdedi==1)
 					{
-						temp->kitapNo = temp->kitapNo-1;
-						temp=temp->sonraki;
+						free(ilk);
+						ilk=p;
+						temp=ilk;
+					}
+					else{
+						ilk->kitapAdedi--;
 					}
 					return ilk;
 				}
-				else if (strcmp(temp->sonraki->kitapAdi,istenilenKitap) == 0) {
-					q=temp->sonraki->sonraki;
-					free(temp->sonraki);
-					temp->sonraki=q;
-	  	            printf("kitap bulundu\n");
-					while (q != NULL)
+				else if (strcmp(temp->sonraki->kitapAdi,istenilenKitap) == 0) 
+				{
+					if (ilk->kitapAdedi==1)
 					{
-						q->kitapNo = q->kitapNo-1;
-						q=q->sonraki;
+						q=temp->sonraki->sonraki;
+						free(temp->sonraki);
+						temp->sonraki=q;
+						temp=ilk;
+					}
+					else
+					{
+						temp->sonraki->kitapAdedi--;
 					}
 					return ilk;
 	            }
@@ -50,7 +60,7 @@ kitaplar *kitapSilme(kitaplar *ilk) {
 		}
 	}
 	else{
-		printf("kitap yok\n");
+		printf("kitap yok");
 		return ilk;
 	}
 }

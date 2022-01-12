@@ -10,7 +10,8 @@ yetkililer *yetkiliKontrol1(yetkililer *ilkYetkili){
     printf("Kullanici Adi:"); scanf(" %s",&girilenAd);
 
 
-	while(x != NULL){
+	while(x != NULL)
+    {
 		if (strcmp(x->kullaniciAdi,girilenAd) == 0)
 		{
 			kontrol=1;
@@ -22,7 +23,7 @@ yetkililer *yetkiliKontrol1(yetkililer *ilkYetkili){
     if (kontrol==0)
     {
         printf("\nBu kullanici adina ait bir yetkili hesabi yok...\n");
-        return kontrol;
+        return (yetkililer *)kontrol;                                                   //girilen kullanici adinin sistemde kayitli olup olmadigini döndürüyor
     }
     else if (kontrol==1)
     {
@@ -41,7 +42,7 @@ yetkililer *yetkiliKontrol1(yetkililer *ilkYetkili){
             sayac++;
         }
         printf("Sifreyi 3 kere yanlis girdiniz.\n");
-        return kontrol;
+        return (yetkililer *)kontrol;
     }
     return ilkYetkili;
 }

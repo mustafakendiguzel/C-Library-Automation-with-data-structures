@@ -5,20 +5,31 @@ yetkililer *yetkiliKontrol(yetkililer *ilkYetkili){
 
     yetkililer *yeniYetkili =(yetkililer*)malloc(sizeof(yetkililer));
     printf("Kullanici Adi:"); scanf(" %[^\t\n]s",&yeniYetkili->kullaniciAdi);
-    printf("Sifre:"); scanf(" %[^\t\n]s",&yeniYetkili->yetkiliSifre);
+    sifre:printf("Sifre:"); scanf(" %[^\t\n]s",&yeniYetkili->yetkiliSifre);
+    printf("Tekrardan Sifre:"); scanf(" %[^\t\n]s",&yeniYetkili->yetkiliSifre2); 
+    printf("Yetkili Anahtar Kelime(sifreyi unuttugunuz zaman sifirlamak icin):"); scanf(" %[^\t\n]s",&yeniYetkili->yetkiliAnahtarKelime);
 
-    if(ilkYetkili==NULL){
-        printf("Ilk yetkili kullaniciyi olusturdunuz...\n");
-        ilkYetkili=yeniYetkili;
+    if(strcmp(yeniYetkili->yetkiliSifre,yeniYetkili->yetkiliSifre2) != 0)
+    {
+        printf("Sifreler ayni degil lutfen tekrar sifre giriniz \n");
+        goto sifre;
     }
     else
-    {
-        yetkililer *temp=ilkYetkili;
-        while (temp->sonraki!=NULL)
+    { 
+        if(ilkYetkili==NULL)
         {
-            temp=temp->sonraki;
+        printf("Ilk yetkili kullaniciyi olusturdunuz...\n");
+        ilkYetkili=yeniYetkili;
+        } 
+        else
+        {
+            yetkililer *temp=ilkYetkili;
+            while (temp->sonraki!=NULL)
+            {
+                temp=temp->sonraki;
+            }
+            temp->sonraki=yeniYetkili;
         }
-        temp->sonraki=yeniYetkili;
+        return ilkYetkili;
     }
-    return ilkYetkili;
 }

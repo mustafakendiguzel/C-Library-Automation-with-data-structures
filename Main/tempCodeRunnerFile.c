@@ -1,2 +1,1 @@
-
-				kontrol1=ogrenciKontrol(ilkOgrenci);
+lk=oduncAlma(

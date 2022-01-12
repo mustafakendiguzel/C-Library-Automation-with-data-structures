@@ -2,14 +2,14 @@
 #include <stdlib.h>
 #include <string.h>
 
-ogrenciler *ogrenciKontrol(ogrenciler *ilkOgrenci){
+ogrenciler *ogrenciKontrol(ogrenciler *ilkOgrenci,char girilenAd1[40]){
 
-	char girilenAd1[40],girilenSifre1[40],geciciAd1,geciciSifre1;
+	char girilenSifre1[40],geciciAd1,geciciSifre1;
 	int kontrol1=0,sayac1=1;
     ogrenciler *x=ilkOgrenci;
-	printf("Ogrenci numaraniz:"); scanf(" %s",&girilenAd1);
 
-	while(x != NULL){
+	while(x != NULL)
+	{
 		if (strcmp(x->kullaniciAdi,girilenAd1) == 0)
 		{
 			kontrol1=1;
@@ -21,17 +21,17 @@ ogrenciler *ogrenciKontrol(ogrenciler *ilkOgrenci){
 	if (kontrol1==0)
 	{
 		printf("\nOnce kayit olunuz...\n");
-		return kontrol1;
+		return (ogrenciler *)kontrol1;
 	}
 	else if (kontrol1==1)
 	{
 		while (sayac1!=4)
 		{
-			printf("Sifre"); scanf(" %s",&girilenSifre1);
+			printf("Sifre: "); scanf(" %s",&girilenSifre1);
 			if (strcmp(x->sifre,girilenSifre1)==0)
 			{
-				printf("Giris yaptiniz...\n");
-				return ilkOgrenci;
+				printf("\nGiris yaptiniz...\n");
+				return (ogrenciler *)ilkOgrenci;
 			}
 			else
 			{
@@ -40,7 +40,7 @@ ogrenciler *ogrenciKontrol(ogrenciler *ilkOgrenci){
 			sayac1++;
 		}
 		printf("Sifreyi 3 kere yanlis girdiniz.\n");
-		return kontrol1;
+		return (ogrenciler *)kontrol1;
 	}
-	return ilkOgrenci;
+	return (ogrenciler *)ilkOgrenci;
 }
